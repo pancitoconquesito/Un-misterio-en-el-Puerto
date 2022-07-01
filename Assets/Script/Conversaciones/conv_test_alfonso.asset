@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c8b9754338723a4bb12e49d82372fee, type: 3}
+  m_Name: conv_test_alfonso
+  m_EditorClassIdentifier: 
+  parrafos:
+  - isTalkingPJ: 0
+    nombreNPC: 3
+    PJ_img: 0
+    NPC_img: 3
+    sp_globo: 1
+    texto_ESPANOL:
+    - "Olvide c\xF3mo llegar a mi casa"
+    - "aun as\xED me pierdo menos que en el mar."
+    texto_INGLES:
+    - I forgot how to get to my house
+    - even so I lose myself less than in the sea
+  - isTalkingPJ: 1
+    nombreNPC: 0
+    PJ_img: 0
+    NPC_img: 3
+    sp_globo: 2
+    texto_ESPANOL:
+    - mmmm... bueno, como sea.
+    texto_INGLES:
+    - hmmm...well, whatever.

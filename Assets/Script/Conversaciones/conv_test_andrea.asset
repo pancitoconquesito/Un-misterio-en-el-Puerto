@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c8b9754338723a4bb12e49d82372fee, type: 3}
+  m_Name: conv_test_andrea
+  m_EditorClassIdentifier: 
+  parrafos:
+  - isTalkingPJ: 0
+    nombreNPC: 6
+    PJ_img: 1
+    NPC_img: 4
+    sp_globo: 1
+    texto_ESPANOL:
+    - frase 1
+    - frase 2
+    texto_INGLES:
+    - phrase 1
+    - phrase 2

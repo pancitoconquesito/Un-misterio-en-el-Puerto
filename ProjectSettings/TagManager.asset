@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Plataform
+  - rayoMagnesis
+  - DATA_SINGLETON
+  - ITEM
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - MagnesisOBJ
+  - MagnesisRAYO
+  - Damageable
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 3433767221
+    locked: 0
+  - name: Back
+    uniqueID: 2715443965
+    locked: 0
+  - name: Platform
+    uniqueID: 4169340515
+    locked: 0
+  - name: NS
+    uniqueID: 43130175
+    locked: 0
+  - name: PJ
+    uniqueID: 54933507
+    locked: 0
+  - name: Sobre
+    uniqueID: 1334865615
+    locked: 0
+  - name: Front
+    uniqueID: 1068470811
+    locked: 0
+  - name: Particulas
+    uniqueID: 3690194495
+    locked: 0
+  - name: StaminaPsiquica
+    uniqueID: 3378509161
+    locked: 0
