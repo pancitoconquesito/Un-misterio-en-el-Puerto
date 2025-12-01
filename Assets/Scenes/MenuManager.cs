@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class MenuManager : MonoBehaviour
 {
-
     private enum ESTADO_
     {
         main, 

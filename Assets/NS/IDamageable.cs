@@ -5,4 +5,5 @@ using UnityEngine;
 public interface IDamageable
 {
     bool RecibirDanio_I(dataDanio m_dataDanio);
+    bool IsEnemy();
 }

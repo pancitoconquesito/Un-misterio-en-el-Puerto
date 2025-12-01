@@ -1,0 +1,12 @@
+﻿id;codigo;isTalkingPJ;PJ_Emocion_img;NPC_Emocion_img;sp_globo;nombreNPC_ES;nombreNPC_EN;Text_ES;Text_EN
+1;TEST;true;normal;normal;hablandoNormal_IZ;PJ;testNPC;texto en español de prueba 1;Test text 1
+2;TEST;;;;;;;texto en español de prueba 2;Test text 2
+3;TEST;;;;;;;texto en español de prueba final;Test text final
+4;TEST;true;normal;normal;hablandoNormal_IZ;PJ;testNPC;texto en español de prueba A;Test text A
+5;TEST;;;;;;;texto en español de prueba B;Test text B
+6;TEST_2;false;leyendo;normal;hablandoNormal_DER;cientifico;;"./w:0.8% ./w:0.8% ./w:0.8% Existe un atajo camino al /color-s:f56436%laboratorio/color-e:% antes de llegar a la /color-s:3690f5%estacion/color-e:% roja ";This is a test message
+7;TEST_2;;;;;;;..................... /sound:sonidoConversacion_test% .........................................................;
+8;TEST_2;;;;;;;/vel:0.8%......../vel:0.01%.............. /sound:sonidoConversacion_test% .........................................................;
+9;TEST_2;true;triste;asombrado;pensando_IZ;cientifico;;asdsadasdasdd;asdsadasdasdd
+10;TEST_2;;;;;;;blabalbalblabla;blabalbalblabla
+11;TEST_2;;;;;;;creo tener la peor suerte del mundo. ;final

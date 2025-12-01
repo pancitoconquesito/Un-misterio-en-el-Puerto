@@ -28,13 +28,13 @@ public class ui_itemObtenido : MonoBehaviour
                 }
         }
 
-        DATA.instance.save_load_system.saveItem(item.ID_ITEM);
 
         Invoke("sacarPantalla",4);
     }
     public void sacarPantalla()
     {
         m_movementPJ.activarMovimiento();
+        m_movementPJ.ExitTernminarItem();
         this.gameObject.SetActive(false);
     }
 }

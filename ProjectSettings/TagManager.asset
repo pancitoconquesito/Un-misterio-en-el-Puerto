@@ -8,6 +8,11 @@ TagManager:
   - rayoMagnesis
   - DATA_SINGLETON
   - ITEM
+  - PolyCamera
+  - AUDIO
+  - InmersionRay
+  - NS
+  - Platform
   layers:
   - Default
   - TransparentFX
@@ -18,13 +23,13 @@ TagManager:
   - MagnesisOBJ
   - MagnesisRAYO
   - Damageable
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Teletransportacion
+  - ColNoPJ
+  - PostProcessing
+  - Stair
+  - Platform_NS
+  - PLAYER
+  - Platform_NS_suelo
   - 
   - 
   - 
@@ -71,4 +76,7 @@ TagManager:
     locked: 0
   - name: StaminaPsiquica
     uniqueID: 3378509161
+    locked: 0
+  - name: TOP
+    uniqueID: 2211582245
     locked: 0

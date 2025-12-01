@@ -8,6 +8,20 @@ public class objMagnesis : MonoBehaviour
     [SerializeField] private float minVelocidadDanio;
     [SerializeField] private BoxCollider2D _Ref_boxColliderDanio;
     [SerializeField] private Rigidbody2D m_rigibody;
+    [SerializeField] private bool DanioContinuo=false;
+    //[SerializeField] private bool m_returnGravity=true;
+
+    //public bool ReturnGravity { get => m_returnGravity;}
+
+    bool tomado = false;
+    public void Tomado(bool value)
+    {
+        if (value)
+        {
+            SetFreezeRotationZ(false);
+        }
+        tomado = value;
+    }
     public float getSpeedMove()
     {
         return speedMove;
@@ -23,9 +37,25 @@ public class objMagnesis : MonoBehaviour
 
     private void Update()
     {
-        if(m_rigibody.velocity.sqrMagnitude > minVelocidadDanio)
+        if (!DanioContinuo)
         {
-            _Ref_boxColliderDanio.enabled = true;
-        }else _Ref_boxColliderDanio.enabled = false;
+            if(m_rigibody.velocity.sqrMagnitude > minVelocidadDanio)
+            {
+                _Ref_boxColliderDanio.enabled = true;
+            }else _Ref_boxColliderDanio.enabled = false;
+        }
+
+        if (!tomado && m_rigibody.velocity.magnitude < 0.1f)
+        {
+            SetFreezeRotationZ(true);
+        }
+    }
+
+    public void SetFreezeRotationZ(bool freeze)
+    {
+        if (freeze)
+            m_rigibody.constraints |= RigidbodyConstraints2D.FreezeRotation;
+        else
+            m_rigibody.constraints &= ~RigidbodyConstraints2D.FreezeRotation;
     }
 }

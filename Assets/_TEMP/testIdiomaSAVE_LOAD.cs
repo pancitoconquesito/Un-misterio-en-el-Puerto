@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class testIdiomaSAVE_LOAD : MonoBehaviour
+public class testIdiomaSAVE_LOAD 
 {
     private GLOBAL_TYPE.IDIOMA m_idioma;
 
-    private void Start()
+    public testIdiomaSAVE_LOAD()
     {
-        cargarIdioma();
+        CargarIdioma();
     }
-    private void cargarIdioma()
+    private void CargarIdioma()
     {
         int valorIdioma = PlayerPrefs.GetInt("idioma",0);
         switch (valorIdioma)

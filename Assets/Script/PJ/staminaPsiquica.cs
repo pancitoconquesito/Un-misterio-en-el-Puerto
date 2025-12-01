@@ -21,12 +21,17 @@ public class staminaPsiquica : MonoBehaviour
     [SerializeField] private Color colorFull;
     [SerializeField] private Color colorRecuperar;
     [SerializeField] private Color colorDetenido;
-
-
+    private movementPJ m_movementPJ;
+    bool m_activeScript = true;
     private float coste_dash;
     private float coste_espadazo;
     private float coste_magnesis;
     private float coste_inicialCapturaMagnesis;
+    private float coste_Disparo;
+    private float coste_Bomba;
+    private float coste_Teletransportacion;
+    private float coste_Inmersion;
+    private float coste_Quinto;
     public void setCosteDash(float valor) { coste_dash = valor; }
     public void setCosteEspadazo(float valor) { coste_espadazo = valor; }
     public void setCosteMagnesis(float valor) { coste_magnesis = valor; }
@@ -36,6 +41,16 @@ public class staminaPsiquica : MonoBehaviour
     public bool puedeMagnesis() { return cantidadActual > coste_magnesis; }
     public bool puedeCapturarConMagnesis() { return cantidadActual > coste_inicialCapturaMagnesis; }
     public float getCantidadStaminaPorcentaje() { return cantidadActual / cantidadTotalPoder * 100f; }
+
+    private bool full = true;
+    private bool visible = false;
+
+    public float Coste_Disparo { get => coste_Disparo; set => coste_Disparo = value; }
+    public float Coste_Bomba { get => coste_Bomba; set => coste_Bomba = value; }
+    public float Coste_Teletransportacion { get => coste_Teletransportacion; set => coste_Teletransportacion = value; }
+    public float Coste_Inmersion { get => coste_Inmersion; set => coste_Inmersion = value; }
+    public float Coste_Quinto { get => coste_Quinto; set => coste_Quinto = value; }
+
     private void Start()
     {
         //cantidadTotalPoder = 100;
@@ -43,6 +58,7 @@ public class staminaPsiquica : MonoBehaviour
         factorRecuperacion += 0.1f;
         delayActual_recuperacion = -1;
         delayActual_ocultar = -1;
+        m_movementPJ = MASTER_REFERENCE.instance.MovementPJ;
     }
     public void addStamina(float cantidad)
     {
@@ -61,13 +77,21 @@ public class staminaPsiquica : MonoBehaviour
 
         m_imageFill.fillAmount = cantidadActual / cantidadTotalPoder;
     }
-    private bool full=true;
-    private bool visible=false;
+    
+    public void DesactivarScript()
+    {
+        m_activeScript = false;
+        visible = false;
+        m_animator.SetTrigger("ocultar");
+    }
     private void Update()
     {
-        recuperar();
-        completar();
-        ocultar();
+        if (m_activeScript)
+        {
+            recuperar();
+            completar();
+            ocultar();
+        }
     }
 
     private void completar()
@@ -87,6 +111,10 @@ public class staminaPsiquica : MonoBehaviour
 
     private void recuperar()
     {
+        if (!m_movementPJ.PuedeRecuperarStamina())
+        {
+            return;
+        }
         delayActual_recuperacion -= Time.deltaTime;
         if (cantidadActual <= cantidadTotalPoder * .99 && delayActual_recuperacion <= 0)
         {

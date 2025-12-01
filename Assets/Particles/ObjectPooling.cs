@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +8,12 @@ public class ObjectPooling : MonoBehaviour
     //public string nombreObjeto;
     public GameObject objeto;
     public int antObjeto;
+
+    internal void ForceReturnToPool(GameObject miObj)
+    {
+        ReturnObjPool(miObj);
+    }
+
     public bool AlinearConPadre=true;
     private GameObject padre;
 
@@ -35,7 +42,9 @@ public class ObjectPooling : MonoBehaviour
     private GameObject getObjPool()
     {
         GameObject newObj;
-        if (antObjeto > 1)
+        //Debug.Log("antObjeto: "+ antObjeto);
+
+        if (antObjeto >= 1)
         {
             antObjeto--;
             newObj = colaOBjeto.Dequeue();
@@ -49,23 +58,57 @@ public class ObjectPooling : MonoBehaviour
     }
     private void ReturnObjPool(GameObject go)
     {
+        //Debug.Log("acá");
+        if (!go.activeSelf) {
+            Debug.Log("!go.activeSelf");
+            return;
+        } 
+        //Debug.Log("ReturnObjPool");
         antObjeto++;
         go.SetActive(false);
         colaOBjeto.Enqueue(go);
     }
     //obtener
-    public void emitirObj(float tiempo)
+    public void emitirObj(float tiempo, bool sacarDePadre=false)
     {
         GameObject objA = getObjPool();
-        if (objA != null)
+        if (objA != null) {
+            if (sacarDePadre)
+            {
+                objA.transform.parent = null;
+            }
+            PoolObjectForceObject poolReturn = objA.GetComponent<PoolObjectForceObject>();
+            //if (poolReturn!=null)
+            //{
+                poolReturn?.AddObjectPooling(this);
+            //}
             StartCoroutine(retornarObjPool(tiempo, objA));
+        }
     }
-    public void emitirObj(float tiempo, Vector2 _position)
+    public GameObject emitirObj(float tiempo, Vector2 _position, bool sacarDePadre = false, bool returnObj=false)
     {
         position = _position;
         GameObject objA = getObjPool();
         if (objA != null)
+        {
+            //Debug.Log("acá-------------");
+            PoolObjectForceObject poolReturn = objA.GetComponent<PoolObjectForceObject>();
+            //if (poolReturn != null)
+            //{
+                poolReturn?.AddObjectPooling(this);
+            //}
+            if (sacarDePadre)
+            {
+                objA.transform.parent = null;
+            }
             StartCoroutine(retornarObjPool(tiempo, objA));
+            if (returnObj)
+            {
+                return objA;
+            }
+        }
+        //Debug.Log("va null");
+        return null;
     }
     IEnumerator retornarObjPool(float tiempo, GameObject miObj)
     {

@@ -1,24 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class changeMirada : MonoBehaviour
 {
-    //[SerializeField] private SpriteRenderer m_spriteRenderer;
-    //[SerializeField] private Transform m_transdformPJ;
-
-
-
     [SerializeField] private bool miradaNormalDerecha;
     [SerializeField] private float offsetInput;
     [SerializeField] private GameObject[] objVolteables;
 
-
-    //enum Type_ladosMirada { iz, der }
     private Vector3[] lista_tamOriginal;
     private GLOBAL_TYPE.LADO mirada;
     private GLOBAL_TYPE.LADO currentMirada;
-    private void Start()
+    private void Awake()
     {
         lista_tamOriginal = new Vector3[objVolteables.Length];
         for (int i = 0; i < lista_tamOriginal.Length; i++)
@@ -42,14 +34,29 @@ public class changeMirada : MonoBehaviour
     {
         return mirada;
     }
-    public void miradaPj(float valor)
+    public void miradaPj(float valor, bool voltearPJ=true, bool forzarUpdate=false)
     {
         if (valor < 0f- offsetInput) currentMirada = GLOBAL_TYPE.LADO.iz;
         if (valor > 0f+ offsetInput) currentMirada = GLOBAL_TYPE.LADO.der;
-        if (currentMirada != mirada)
+        if (currentMirada != mirada || forzarUpdate)
         {
             mirada = currentMirada;
-            changeMiradaFuncion();
+            if (voltearPJ)
+            {
+                changeMiradaFuncion();
+            }
+        }
+    }
+    public void miradaPj(GLOBAL_TYPE.LADO lADO, bool voltearPJ = true, bool forzarUpdate = false)
+    {
+        currentMirada = lADO;
+        if (currentMirada != mirada || forzarUpdate)
+        {
+            mirada = currentMirada;
+            if (voltearPJ)
+            {
+                changeMiradaFuncion();
+            }
         }
     }
     private void changeMiradaFuncion()
@@ -62,10 +69,6 @@ public class changeMirada : MonoBehaviour
     }
     private void mirarIZ()
     {
-        //m_spriteRenderer.flipX= true;
-        //m_transdformPJ.localScale = new Vector3(-1,1,1);
-
-
         for (int i = 0; i < objVolteables.Length; i++)
         {
             if (miradaNormalDerecha)
@@ -76,9 +79,6 @@ public class changeMirada : MonoBehaviour
     }
     private void mirarDer()
     {
-        //m_spriteRenderer.flipX = false;
-       // m_transdformPJ.localScale = Vector3.one;
-
         for (int i = 0; i < objVolteables.Length; i++)
         {
             if(miradaNormalDerecha)
@@ -87,4 +87,9 @@ public class changeMirada : MonoBehaviour
                 objVolteables[i].transform.localScale = new Vector3(-lista_tamOriginal[i].x, lista_tamOriginal[i].y, lista_tamOriginal[i].z);
         }
     }
+
+    //internal void miradaPjStair(float valorInput_Horizontal)
+    //{
+    //    throw new NotImplementedException();
+    //}
 }

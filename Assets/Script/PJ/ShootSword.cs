@@ -4,45 +4,47 @@ using UnityEngine;
 
 public class ShootSword : MonoBehaviour
 {
-    [SerializeField] private float limiteAxis;
-    [SerializeField] private Animator m_aniamtorPJ;
-    public void startSword( float valorY)
+    [SerializeField] private ObjectPooling particleSword_GO;
+    [SerializeField]private changeMirada m_changeMirada;
+    private GameObject padreParticles;
+    private void Awake()
     {
-        /*
-        switch (direccion)
+        padreParticles = particleSword_GO.transform.parent.gameObject;
+    }
+    public void _EmitirParticleSword_FRONTAL()
+    {
+        if (m_changeMirada.getMirada()==GLOBAL_TYPE.LADO.iz)
         {
-            case GLOBAL_TYPE.direccionShootEspada.arriba:
-            {
-                if (ground) m_aniamtorPJ.SetTrigger("sword_g_arriba");
-                else m_aniamtorPJ.SetTrigger("sword_ng_arriba");
-                break;
-            }
-            case GLOBAL_TYPE.direccionShootEspada.frontal:
-            {
-                if (ground) m_aniamtorPJ.SetTrigger("sword_g_frontal");
-                else m_aniamtorPJ.SetTrigger("sword_ng_frontal");
-                break;
-            }
-            case GLOBAL_TYPE.direccionShootEspada.abajo:
-            {
-                if (ground) m_aniamtorPJ.SetTrigger("sword_g_abajo");
-                else m_aniamtorPJ.SetTrigger("sword_ng_abajo");
-                break;
-            }
-        }
-        */
-        /*
-        if(valorY < -limiteAxis)
-        {
-            //abajo
-        }else if(valorY> limiteAxis)
-        {
-            //arriba
+            _EmitirParticleSword_LEFT();
         }
         else
         {
-            //frontal
+            _EmitirParticleSword_RIGHT();
         }
-        */
+
+    }
+    public void _EmitirParticleSword_UP()
+    {
+        GameObject particleObj = particleSword_GO.emitirObj(0.8f, padreParticles.transform.position, false, true);
+        particleObj.transform.rotation = Quaternion.Euler(new Vector3(0,0,90));
+    }
+    public void _EmitirParticleSword_DOWN()
+    {
+        GameObject particleObj = particleSword_GO.emitirObj(0.8f, padreParticles.transform.position, false, true);
+        particleObj.transform.rotation = Quaternion.Euler(new Vector3(0, 0, -90));
+    }
+    void _EmitirParticleSword_LEFT()
+    {
+        GameObject particleObj = particleSword_GO.emitirObj(0.8f, padreParticles.transform.position, false, true);
+        particleObj.transform.rotation = Quaternion.Euler(new Vector3(180, 0, 180));
+    }
+    void _EmitirParticleSword_RIGHT()
+    {
+        GameObject particleObj = particleSword_GO.emitirObj(0.8f, padreParticles.transform.position, false, true);
+        particleObj.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+    }
+    void startSword( float valorY)
+    {
+       
     }
 }

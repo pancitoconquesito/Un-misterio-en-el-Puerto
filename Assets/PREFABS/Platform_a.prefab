@@ -215,6 +215,7 @@ GameObject:
   - component: {fileID: 7212663033606377975}
   - component: {fileID: 7212663033606377972}
   - component: {fileID: 7212663033606377973}
+  - component: {fileID: 7715109278564826854}
   m_Layer: 0
   m_Name: Square (22)
   m_TagString: Plataform
@@ -334,6 +335,20 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
+--- !u!114 &7715109278564826854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7212663033606377979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79cd3e420bb0f9b4db978efcf69938b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delay: 0.3
+  collider: {fileID: 7212663033606377972}
 --- !u!1 &8019824628508961976
 GameObject:
   m_ObjectHideFlags: 0

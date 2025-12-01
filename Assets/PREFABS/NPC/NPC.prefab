@@ -95,7 +95,7 @@ Animator:
   m_GameObject: {fileID: 7695519942667445030}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c7c1fe1562558a04bb6c022a5ccb0e6d, type: 2}
+  m_Controller: {fileID: 9100000, guid: cb780beb489c8184383ae1f3f09406d7, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -323,8 +323,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7695519944133947616}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.059414864, y: -1.6649, z: 0}
-  m_LocalScale: {x: 14.688887, y: 4.329925, z: 1}
+  m_LocalPosition: {x: -0.059414864, y: 1.7236, z: 0}
+  m_LocalScale: {x: 14.688887, y: 11.107124, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7695519943922799087}
@@ -420,23 +420,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6cf2d79d20c5494ba8570f897b833d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movePJ: {fileID: 0}
-  m_transformPJ: {fileID: 0}
-  ui_conversacion: {fileID: 0}
-  m_dialogoTEXT: {fileID: 0}
   m_conversacion: {fileID: 11400000, guid: be0439326a648a241a74d5b50b9b856e, type: 2}
-  img_PJ: {fileID: 0}
-  img_NPC: {fileID: 0}
-  globo: {fileID: 0}
-  btnNXT: {fileID: 0}
-  nameLeft: {fileID: 0}
-  nameRight: {fileID: 0}
-  contenedorNameLeft: {fileID: 0}
-  contenedorNameRight: {fileID: 0}
-  m_box_alejarPj: {fileID: 7695519942924638236}
-  m_transform_yo_npc_visual: {fileID: 7695519944416445850}
   npcVisualMira_IZ: 1
-  m_anim_btn_ui: {fileID: 7695519942667445028}
+  m_transform_yo_npc_visual: {fileID: 7695519944416445850}
+  m_box_alejarPj: {fileID: 7695519942924638236}
+  m_animTarget: {fileID: 7695519942667445028}
 --- !u!1 &7695519944416445853
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class magnesis : MonoBehaviour
+public class Magnesis : MonoBehaviour
 {
     [SerializeField] private float timeRayo;
     private float current_timeRayo;
@@ -30,6 +30,7 @@ public class magnesis : MonoBehaviour
     [SerializeField] private Animator m_aniamtorRayo;
     [SerializeField] private ParticleSystem m_particlesMAgnesis_obj;
     [SerializeField] private rayoMagnesis m_rayoMagnesis;
+    [SerializeField] private float m_ptenciadorMagnesis;
     private void activarControles()
     {
         
@@ -65,7 +66,10 @@ public class magnesis : MonoBehaviour
     }
     //private void OnEnable(){m_Control_Magnesis.MAGNESIS.Enable();}
     private void OnDisable(){ desactivarControles(); }
-
+    void OnDestroy()
+    {
+        LeanTween.cancel(gameObject);
+    }
     private void FixedUpdate()
     {
         
@@ -79,9 +83,12 @@ public class magnesis : MonoBehaviour
 
         if (target)
         {
-            if (m_staminaPsiquica.puedeMagnesis())
+            float curr_distanciaMaxima = (transform.position - m_rigidbody_target.transform.position).magnitude;
+            if (m_staminaPsiquica.puedeMagnesis() && curr_distanciaMaxima < distanciaMaxima)
             {
-                m_rigidbody_target.AddForce(moveFinal * speedMoveTarget);
+                m_rigidbody_target.AddForce(moveFinal * speedMoveTarget * m_ptenciadorMagnesis);
+                float orqueX = moveFinal.normalized.x;
+                m_rigidbody_target.AddTorque(orqueX * 100f);
                 m_staminaPsiquica.addStamina(-costeMagnesis* Time.fixedDeltaTime);
             }
             else
@@ -152,12 +159,14 @@ public class magnesis : MonoBehaviour
         if (lado == GLOBAL_TYPE.LADO.iz) dir = -1;
         
     }
-    
+    float originalGravityScale;
     public void detenerRayo()
     {
         if (m_rigidbody_target != null)
         {
-            m_rigidbody_target.gravityScale = 1f;
+            //if(m_objMagnesis.ReturnGravity)//m_returnGravity
+                m_rigidbody_target.gravityScale = originalGravityScale;
+            //else m_rigidbody_target.gravityScale = 1f;
         }
         LeanTween.cancel(idLeanMovement_X);
         m_transform_magnesis.localPosition = Vector2.zero;
@@ -176,10 +185,15 @@ public class magnesis : MonoBehaviour
         m_rayoMagnesis.setComplete(false);
         detenerTarget();
         desactivarControles();
+        if (m_objMagnesis != null)
+        {
+            m_objMagnesis.Tomado(false);
+        }
+        m_objMagnesis = null;
     }
     private Rigidbody2D m_rigidbody_target = null;
     private bool target = false;
-    private float speedMoveTarget = 1f;
+    float speedMoveTarget = 1f;
     private GameObject target_OBJ=null;
     public void targetLogrado(GameObject gameTarget)
     {
@@ -209,19 +223,21 @@ public class magnesis : MonoBehaviour
             LeanTween.cancel(idLeanMovement_Y);
 
             m_rigidbody_target = gameTarget.GetComponent<Rigidbody2D>();
+            originalGravityScale = m_rigidbody_target.gravityScale;
             m_rigidbody_target.gravityScale = 0.1f;
 
             target = true;
             m_Control_Magnesis.MAGNESIS.Enable();
 
-            objMagnesis _objMagnesis = gameTarget.GetComponent<objMagnesis>();
-            speedMoveTarget = _objMagnesis.getSpeedMove();
+            m_objMagnesis = gameTarget.GetComponent<objMagnesis>();
+            speedMoveTarget = m_objMagnesis.getSpeedMove();
+            m_objMagnesis.Tomado(true);
             //currentMinVelocidadDanio = _objMagnesis.getMinVelocidadDanio();
             //boxCollider_danioVelocidadTarget = _objMagnesis.get_Ref_boxColliderDanio();
         }
 
     }
-
+    objMagnesis m_objMagnesis;
     public void detenerTarget()
     {
         target = false;

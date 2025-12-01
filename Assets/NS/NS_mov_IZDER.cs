@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(changeMirada))]
 public class NS_mov_IZDER : MonoBehaviour
 {
+    [SerializeField] private float gravedad;
     [SerializeField] private GLOBAL_TYPE.LADO direccionCaminata;
     [SerializeField] private float velocidad;
     [Range(0,100f)][SerializeField] private float rangoPatrulla;
@@ -42,7 +43,7 @@ public class NS_mov_IZDER : MonoBehaviour
     private void FixedUpdate()
     {
         if (!reciboiendoDanio)
-            m_rigidbody.velocity = velocidad * lado;
+            m_rigidbody.velocity = Vector2.right*velocidad * lado + Vector2.up*gravedad;
         else
             m_rigidbody.velocity = lado;
     }

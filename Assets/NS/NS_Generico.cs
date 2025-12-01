@@ -42,15 +42,8 @@ public class NS_Generico : MonoBehaviour, IDamageable
         print("acabo de morir!");
        // Destroy(container);
     }
-    // Start is called before the first frame update
-    void Start()
+    public bool IsEnemy()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        return true;
     }
 }

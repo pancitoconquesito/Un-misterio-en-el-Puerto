@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce75a45b16cd0ef458678b301d4a2687, type: 3}
+  m_Name: DATA_Hardcore_SCENE
+  m_EditorClassIdentifier: 
+  Scenes_DATA:
+  - m_nameScene: MainMenu
+    m_colorBackground: {r: 0, g: 0.30980393, b: 0.32156864, a: 0}
+    m_audioBackgroundEnum: 3
+  - m_nameScene: S0_A
+    m_colorBackground: {r: 0.41568628, g: 0.7176471, b: 0.65882355, a: 0}
+    m_audioBackgroundEnum: 1
+  - m_nameScene: S0_B
+    m_colorBackground: {r: 0.41568628, g: 0.7176471, b: 0.65882355, a: 1}
+    m_audioBackgroundEnum: 1
+  - m_nameScene: Sub_B
+    m_colorBackground: {r: 0, g: 0.30980393, b: 0.32156864, a: 0}
+    m_audioBackgroundEnum: 2
+  - m_nameScene: Sub_A
+    m_colorBackground: {r: 0, g: 0.30980393, b: 0.32156864, a: 0}
+    m_audioBackgroundEnum: 1
+  - m_nameScene: Sub_D
+    m_colorBackground: {r: 0.05882353, g: 0, b: 0.12156863, a: 0}
+    m_audioBackgroundEnum: 1
+  - m_nameScene: Sub_E
+    m_colorBackground: {r: 0.05882353, g: 0, b: 0.12156863, a: 1}
+    m_audioBackgroundEnum: 1
+  - m_nameScene: Sub_F
+    m_colorBackground: {r: 0.2, g: 0, b: 0.13333334, a: 1}
+    m_audioBackgroundEnum: 1
+  - m_nameScene: Sub_G
+    m_colorBackground: {r: 0.21960784, g: 0.2627451, b: 0.28235295, a: 1}
+    m_audioBackgroundEnum: 1
+  - m_nameScene: Save_Museo
+    m_colorBackground: {r: 0.058104116, g: 0, b: 0.122641504, a: 0}
+    m_audioBackgroundEnum: 1
+  - m_nameScene: LU_01
+    m_colorBackground: {r: 0.058104116, g: 0, b: 0.122641504, a: 0}
+    m_audioBackgroundEnum: 1
+  - m_nameScene: LU_02
+    m_colorBackground: {r: 0.058104116, g: 0, b: 0.122641504, a: 0}
+    m_audioBackgroundEnum: 1
+  - m_nameScene: LU_03
+    m_colorBackground: {r: 0.058104116, g: 0, b: 0.122641504, a: 0}
+    m_audioBackgroundEnum: 1
+  - m_nameScene: LU_04
+    m_colorBackground: {r: 0.058104116, g: 0, b: 0.122641504, a: 0}
+    m_audioBackgroundEnum: 1
+  - m_nameScene: LU_05
+    m_colorBackground: {r: 0.058104116, g: 0, b: 0.122641504, a: 0}
+    m_audioBackgroundEnum: 1
+  - m_nameScene: LU_06
+    m_colorBackground: {r: 0.058104116, g: 0, b: 0.122641504, a: 0}
+    m_audioBackgroundEnum: 1
+  - m_nameScene: LU_07
+    m_colorBackground: {r: 0.058104116, g: 0, b: 0.122641504, a: 0}
+    m_audioBackgroundEnum: 1
+  - m_nameScene: LU_08
+    m_colorBackground: {r: 0.058104116, g: 0, b: 0.122641504, a: 0}
+    m_audioBackgroundEnum: 1
+  - m_nameScene: LU_10
+    m_colorBackground: {r: 0.058104116, g: 0, b: 0.122641504, a: 0}
+    m_audioBackgroundEnum: 1
+  - m_nameScene: LU_011
+    m_colorBackground: {r: 0.058104116, g: 0, b: 0.122641504, a: 0}
+    m_audioBackgroundEnum: 1
+  - m_nameScene: LU_A
+    m_colorBackground: {r: 0.058104116, g: 0, b: 0.122641504, a: 0}
+    m_audioBackgroundEnum: 1
+  - m_nameScene: LU_BOSS_A
+    m_colorBackground: {r: 0.058104116, g: 0, b: 0.122641504, a: 0}
+    m_audioBackgroundEnum: 1
+  - m_nameScene: LU_SAVE_01
+    m_colorBackground: {r: 0.058104116, g: 0, b: 0.122641504, a: 0}
+    m_audioBackgroundEnum: 1

@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c8b9754338723a4bb12e49d82372fee, type: 3}
+  m_Name: conv_TEST
+  m_EditorClassIdentifier: 
+  parrafos:
+  - isTalkingPJ: 0
+    PJ_Emocion_img: 3
+    nombreNPC: 4
+    NPC_Emocion_img: 0
+    sp_globo: 1
+    texto_ESPANOL:
+    - "./w:0.8% ./w:0.8% ./w:0.8% Existe un atajo camino al /color-s:\rf56436\r%laboratorio/color-e:%
+      antes de llegar a la /color-s:3690f5%estacion/color-e:% roja "
+    - ..................... /sound:sonidoConversacion_test% .........................................................
+    - /vel:0.8%......../vel:0.01%.............. /sound:sonidoConversacion_test% .........................................................
+    texto_INGLES:
+    - This is a test message
+    - Second test message
+  - isTalkingPJ: 1
+    PJ_Emocion_img: 2
+    nombreNPC: 4
+    NPC_Emocion_img: 4
+    sp_globo: 2
+    texto_ESPANOL:
+    - asdsadasdasdd
+    - blabalbalblabla
+    - 'creo tener la peor suerte del mundo. '
+    texto_INGLES:
+    - sdfadfsdafsdfsdfsd
+    - blablablalba
+    - this is my last paragraph

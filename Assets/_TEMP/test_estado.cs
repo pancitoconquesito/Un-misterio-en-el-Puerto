@@ -15,7 +15,7 @@ public class test_estado : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        texto.text = "Estado Actual : [ "+parseEstado(m_movementPJ.test_getEstado())+" ]";
+        texto.text = "Estado Actual : [ "+parseEstado(m_movementPJ.GetState())+" ]";
     }
 
     private string parseEstado(GLOBAL_TYPE.ESTADOS estado)

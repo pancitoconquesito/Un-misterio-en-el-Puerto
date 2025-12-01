@@ -7,17 +7,21 @@ public class objDepProgress : MonoBehaviour
     {
         destruir, animacion, nada
     }
-    [SerializeField] private GLOBAL_TYPE.TIPO_PREFAB tipoPrefab;
-    [SerializeField] private int idPrefab;
+    [SerializeField] private DATA_ITEMS.ITEMS itemKey;
+    //[SerializeField] private int idPrefab;
     [SerializeField] private ACCION accion;
+
     [Header("-- Animacion --")]
     [SerializeField] private Animator m_animator;
     [SerializeField]private string nombreAnimacion;
     [SerializeField] private bool startWithTrigger;
     [SerializeField] private string tagTrigger;
+    bool isActive=false;
+
+
     void Start()
     {
-        if(DATA.instance.save_load_system.isGenericProgress(tipoPrefab, idPrefab))
+        if(DATA.instance.save_load_system.GetItemProgress(itemKey))
         {
             switch (accion)
             {
@@ -33,12 +37,19 @@ public class objDepProgress : MonoBehaviour
                         break;
                     }
             }
+            Debug.Log($"ITEM: {itemKey}: TRUE");
+            isActive = true;
+        }
+        else
+        {
+            isActive = false;
+            Debug.Log($"ITEM: {itemKey}: FALSE");
         }
     }
     private bool complete=false;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (startWithTrigger && !complete && collision.CompareTag(tagTrigger))
+        if (isActive && startWithTrigger && !complete && collision.CompareTag(tagTrigger))
         {
             complete = true;
             m_animator.SetTrigger(nombreAnimacion);

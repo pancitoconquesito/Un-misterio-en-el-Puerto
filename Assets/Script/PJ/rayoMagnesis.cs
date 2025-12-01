@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class rayoMagnesis : MonoBehaviour
 {
-    [SerializeField] private magnesis m_magnesis;
+    [SerializeField] private Magnesis m_magnesis;
     [SerializeField] private LayerMask includeLayers;
     [SerializeField] private Animator m_animator;
     /*
