@@ -6,6 +6,8 @@ using static GLOBAL_TYPE;
 public class movementPJ : MonoBehaviour
 {
     [Header("-- Basic param --")]
+    [SerializeField] Collider2D m_collider;
+    [SerializeField] GameObject m_contentObject;
     [SerializeField] staminaPsiquica stamina;
     [SerializeField] private Animator m_at_arranar;
     [SerializeField] private AnimEvent m_animEventSP;
@@ -591,7 +593,6 @@ public class movementPJ : MonoBehaviour
         if (current_cadenciaParticulasPolvo < -100) current_cadenciaParticulasPolvo = -100;
         if (move)
         {
-            m_isMoveablePlatform = m_groundedClass.isMoveablePlatform();
             if (m_isGrounded) {
                 attackAirForce_DATA_DOWN.count = 0;
                 attackAirForce_DATA_FRONT.count = 0;
@@ -618,6 +619,12 @@ public class movementPJ : MonoBehaviour
                 }
             }
             m_animator.SetFloat("velocity_Y", m_rigidbody_A.velocity.y);
+
+            m_isMoveablePlatform = m_groundedClass.isMoveablePlatform();
+            if (m_isMoveablePlatform)
+            {
+                //asdasdasd
+            }
 
         }
         else
@@ -1160,7 +1167,12 @@ public class movementPJ : MonoBehaviour
         {
             transform.SetParent(m_groundedClass.GetPlatformMoveable());
             //transform.position = new Vector3(transform.position.x, m_grounded.GetYPosition(), transform.position.z);
-            transform.position = new Vector3(transform.position.x, m_groundedClass.GetYPosition(), transform.position.z);
+            transform.position = new Vector3(transform.position.x, 
+                //m_groundedClass.GetYPosition() 
+                //+
+                m_collider.bounds.min.y, 
+                transform.position.z);
+            //Debug.Break();
         }
         else
         {

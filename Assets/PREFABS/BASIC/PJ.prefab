@@ -21773,6 +21773,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 365ca65509764e64795f0a8a0cdfff4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_collider: {fileID: 6393606342788278789}
+  m_contentObject: {fileID: 5209079217039821798}
   stamina: {fileID: 6393606344372344526}
   m_at_arranar: {fileID: 2049882885797585684}
   m_animEventSP: {fileID: 6980464322643919316}

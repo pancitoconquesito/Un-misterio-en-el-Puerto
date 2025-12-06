@@ -9,9 +9,11 @@ public class MoveablePlatform : MonoBehaviour
     {
         PingPong, Loop
     }
-    public TypeMovement m_typeMovement;
-    public float m_minDistance;
-    public float speed = 1f;
+    [SerializeField] TypeMovement m_typeMovement;
+    [SerializeField] float m_minDistance;
+    [SerializeField] float speed = 1f;
+    [SerializeField] float tiempoEspera = 0f;
+    [SerializeField] bool detenido = false;
 
     Vector3[] m_LNodes;
     int currentNode;
@@ -19,6 +21,8 @@ public class MoveablePlatform : MonoBehaviour
     bool forward = true;
     bool isNew = true;
     float m_offesetYPlayer;
+    public bool Detenido { get => detenido; set => detenido = value; }
+
     private void Awake()
     {
         int countChildren = transform.childCount;
@@ -36,17 +40,27 @@ public class MoveablePlatform : MonoBehaviour
     {
         currentNode = 0;
         countNodes = m_LNodes.Length;
-        m_offesetYPlayer = transform.localScale.y;
+        m_offesetYPlayer = transform.localScale.y/2f;
     }
-
-    void Update()
+    private void Update()
     {
+        if (detenido)
+        {
+            return;
+        }
         CalculateNode();
+    }
+    void FixedUpdate()
+    {
+        if (detenido)
+        {
+            return;
+        }
         MoveObject();
     }
     private void MoveObject()
     {
-        transform.Translate((m_LNodes[currentNode]- transform.position).normalized * speed*Time.deltaTime, Space.World);
+        transform.Translate((m_LNodes[currentNode]- transform.position).normalized * speed*Time.fixedDeltaTime, Space.World);
     }
 
     private void CalculateNode()
@@ -55,7 +69,13 @@ public class MoveablePlatform : MonoBehaviour
         if (currentDistance < m_minDistance)
         {
             ChangeNxPosition();
+            detenido = true;
+            Invoke("ReActivar", tiempoEspera);
         }
+    }
+    void ReActivar()
+    {
+        detenido = false;
     }
     private void ChangeNxPosition()
     {
