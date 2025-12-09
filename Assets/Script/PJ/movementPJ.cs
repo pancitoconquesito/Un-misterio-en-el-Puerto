@@ -137,6 +137,8 @@ public class movementPJ : MonoBehaviour
     private GLOBAL_TYPE.TIPO_ENTRADA m_tipoEntrada;
     Stairs_UP curr_Stairs;
     float curr_coolDown_JumpPared;
+    GLOBAL_TYPE.DIRECCIONES_4 last_dir_sword;
+
     [ShowNonSerializedField] SUPER_ESTADO m_SUPER_ESTADO;
 
 
@@ -149,6 +151,7 @@ public class movementPJ : MonoBehaviour
     public bool Poder_telekinesis { get => poder_telekinesis; set => poder_telekinesis = value; }
     public staminaPsiquica Stamina { get => stamina; set => stamina = value; }
     public bool Has_JumpWall { get => has_JumpWall; set => has_JumpWall = value; }
+    public DIRECCIONES_4 Last_dir_sword { get => last_dir_sword; set => last_dir_sword = value; }
 
     void SetSuperEstado(SUPER_ESTADO estado)
     {
@@ -372,13 +375,6 @@ public class movementPJ : MonoBehaviour
         if (GLOBAL_TYPE.canShoot(m_ESTADO) && current_timeShoot < 0.1f && m_staminaPsiquica.getCantidadStamina() > costoSword && m_staminaPsiquica.puedeEspadazo())
         {
             Audio_FX_PJ.PlaySound(Sound_FX_BANK.Sound_FX_Names.PJ_attack_start);
-            UpdateAirAttackDATA();
-            m_animator.SetTrigger("sword");
-            current_timeShoot = timeShoot;
-            m_ESTADO = GLOBAL_TYPE.ESTADOS.sword;
-            //m_staminaPsiquica.addStamina(-costoSword);
-            m_CameraController.ShakeCamera(5, 5, 0.6f);
-
             //valueInterno_Axis
             if (valueInterno_Axis.y < -0.2f)
             {
@@ -392,9 +388,26 @@ public class movementPJ : MonoBehaviour
             }
             else
             {
-                //frontal
-                dir_sword = GLOBAL_TYPE.DIRECCIONES_4.right;//frontal
+                if(m_changeMirada.getMirada() == LADO.iz)
+                {
+
+                    dir_sword = GLOBAL_TYPE.DIRECCIONES_4.left;//frontal
+                }
+                else
+                {
+                    //frontal
+                    dir_sword = GLOBAL_TYPE.DIRECCIONES_4.right;//frontal
+                }
             }
+            last_dir_sword = dir_sword;
+
+            UpdateAirAttackDATA();
+            m_animator.SetTrigger("sword");
+            current_timeShoot = timeShoot;
+            m_ESTADO = GLOBAL_TYPE.ESTADOS.sword;
+            //m_staminaPsiquica.addStamina(-costoSword);
+            m_CameraController.ShakeCamera(5, 5, 0.6f);
+
         }
     }
     internal bool IsAtaqueAbajo()
@@ -1145,16 +1158,32 @@ public class movementPJ : MonoBehaviour
         m_animator.SetTrigger("GetItem_EXIT");
     }
 
-    internal void ApplyForce(Vector3 dir, float pushPower)
+    internal void ApplyForce(Vector3 dir, float pushPower, bool soloArriba = true, bool resetVelocity = false)
     {
-        if (m_animator.GetFloat("Axis_Y") >= 0 /*|| m_isGrounded*/) return;
+        if (soloArriba && m_animator.GetFloat("Axis_Y") >= 0 /*|| m_isGrounded*/) return;
+        if (resetVelocity)
+        {
+            m_rigidbody_A.velocity = Vector2.zero;
+        }
         m_ESTADO = GLOBAL_TYPE.ESTADOS.movementNormal;
+        CancelarPared();
         swordFinished();
         current_timeShoot = -1;
         m_animator.SetTrigger("startJump");
         m_rigidbody_A.AddForce(dir * pushPower, ForceMode2D.Impulse);
-
     }
+
+    //internal void ApplyForce_4Axis(Vector3 dir, float pushPower)
+    //{
+    //    if (m_animator.GetFloat("Axis_Y") >= 0 /*|| m_isGrounded*/) return;
+    //    m_ESTADO = GLOBAL_TYPE.ESTADOS.movementNormal;
+    //    CancelarPared();
+    //    swordFinished();
+    //    current_timeShoot = -1;
+    //    m_animator.SetTrigger("startJump");
+    //    m_rigidbody_A.AddForce(dir * pushPower, ForceMode2D.Impulse);
+    //}
+
     internal void ApplyForce_X(Vector3 dir, float pushPower)
     {
         m_rigidbody_A.AddForce(dir * pushPower, ForceMode2D.Impulse);

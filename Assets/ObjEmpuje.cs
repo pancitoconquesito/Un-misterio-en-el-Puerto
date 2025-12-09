@@ -50,7 +50,26 @@ public class ObjEmpuje : MonoBehaviour, IDamageable
 
             }
             */
-            m_movementPJ.ApplyForce(Vector2.up, pushPower);
+            Vector2 dirAttack = Vector2.zero;
+            switch (m_movementPJ.Last_dir_sword)
+            {
+                case GLOBAL_TYPE.DIRECCIONES_4.left:
+                    {
+                        dirAttack = Vector2.right;
+                        break;
+                    }
+                case GLOBAL_TYPE.DIRECCIONES_4.right:
+                    {
+                        dirAttack = Vector2.left;
+                        break;
+                    }
+                case GLOBAL_TYPE.DIRECCIONES_4.down:
+                    {
+                        dirAttack = Vector2.up;
+                        break;
+                    }
+            }
+            m_movementPJ.ApplyForce(dirAttack, pushPower, false, true);
 
             return true;
         }
