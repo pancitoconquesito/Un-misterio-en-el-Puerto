@@ -9,6 +9,7 @@ public class MoveablePlatform : MonoBehaviour
     {
         PingPong, Loop
     }
+    [SerializeField] GameObject m_go_Points;
     [SerializeField] TypeMovement m_typeMovement;
     [SerializeField] float m_minDistance;
     [SerializeField] float speed = 1f;
@@ -25,15 +26,20 @@ public class MoveablePlatform : MonoBehaviour
 
     private void Awake()
     {
-        int countChildren = transform.childCount;
+        GameObject objTargetPoints = transform.gameObject;
+        if (m_go_Points != null)
+        {
+            objTargetPoints = m_go_Points;
+        }
+        int countChildren = objTargetPoints.transform.childCount;
         m_LNodes = new Vector3[countChildren];
         for (int i = 0; i < countChildren; i++)
         {
-            m_LNodes[i] = transform.GetChild(i).transform.position;
+            m_LNodes[i] = objTargetPoints.transform.GetChild(i).transform.position;
         }
         for (int i = 0; i < countChildren; i++)
         {
-            transform.GetChild(0).transform.SetParent(null);
+            objTargetPoints.transform.GetChild(0).transform.SetParent(null);
         }
     }
     void Start()
@@ -115,6 +121,8 @@ public class MoveablePlatform : MonoBehaviour
                 }
         }
     }
-    
+
+    public void FlipEstado() => detenido = !detenido;
+
     internal float GetHeightOffset()=> m_offesetYPlayer;
 }
