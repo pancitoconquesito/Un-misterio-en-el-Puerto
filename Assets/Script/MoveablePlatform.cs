@@ -15,6 +15,7 @@ public class MoveablePlatform : MonoBehaviour
     [SerializeField] float speed = 1f;
     [SerializeField] float tiempoEspera = 0f;
     [SerializeField] bool detenido = false;
+    [SerializeField] bool eliminarNodos = true;
 
     Vector3[] m_LNodes;
     int currentNode;
@@ -37,9 +38,20 @@ public class MoveablePlatform : MonoBehaviour
         {
             m_LNodes[i] = objTargetPoints.transform.GetChild(i).transform.position;
         }
-        for (int i = 0; i < countChildren; i++)
+
+        if (eliminarNodos)
         {
-            objTargetPoints.transform.GetChild(0).transform.SetParent(null);
+            foreach (Transform child in objTargetPoints.transform)
+            {
+                Destroy(child.gameObject);
+            }
+        }
+        else
+        {
+            foreach (Transform child in objTargetPoints.transform)
+            {
+                child.SetParent(null);
+            }
         }
     }
     void Start()
